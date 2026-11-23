@@ -1,4 +1,4 @@
-# Source Survey (Step 1) - Member A
+# Source Survey
 
 Checked 2026-11-23. Method: fetched `/robots.txt`, homepage, one paginated section page per site, with a normal browser-style User-Agent. No articles were bulk-downloaded.
 Re-check each site's terms of use before scraping; robots.txt is only part of the picture.

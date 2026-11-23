@@ -1,4 +1,4 @@
-"""Shared preprocessing (Member A). Cleaning only - nothing here is fit on data."""
+"""Shared preprocessing. Cleaning only - nothing here is fit on data."""
 import re
 import unicodedata
 
