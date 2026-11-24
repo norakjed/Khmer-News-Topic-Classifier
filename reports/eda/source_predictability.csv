@@ -1,0 +1,7 @@
+﻿class,source_a,source_b,articles,balanced_accuracy
+politics,CEN,DAP News,614,0.95
+economy,CEN,DAP News,546,0.905
+technology,CEN,DAP News,556,0.886
+sports,DAP News,Kampuchea Thmey,542,0.944
+society_health,CEN,DAP News,461,0.987
+entertainment,CEN,DAP News,419,0.834
