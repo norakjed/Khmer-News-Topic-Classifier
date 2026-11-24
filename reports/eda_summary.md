@@ -146,4 +146,3 @@ Character n-grams that push a prediction toward each source:
 
 - reports/figures: fig_class_balance, fig_length, fig_khmer_share, fig_year_heatmap, fig_source_predictability
 - reports/eda/*.csv: every table above
-- reports/label_spotcheck.csv: 110 random articles for the manual label check (seed 42)

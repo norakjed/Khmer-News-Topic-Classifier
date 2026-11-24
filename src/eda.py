@@ -36,7 +36,7 @@ SEQ = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366
 BLUE = "#2a78d6"
 SURFACE, INK, INK2, MUTED, GRID, AXIS = "#fcfcfb", "#0b0b0b", "#52514e", "#898781", "#e1e0d9", "#c3c2b7"
 
-KHMER = re.compile(r"[ក-៿]")
+KHMER = re.compile("[" + chr(0x1780) + "-" + chr(0x17FF) + "]")  # Khmer Unicode block U+1780-U+17FF
 LATIN = re.compile(r"[A-Za-z]")
 
 
@@ -245,17 +245,6 @@ def distinctive_ngrams(df, n=4, k=10, min_docs=20):
     return out
 
 
-def spotcheck_sample(df):
-    rng = np.random.RandomState(SEED)
-    sizes = {c: 17 for c in CLASS_ORDER}; sizes["society_health"] = 25  # weakest labels get more
-    parts = [df[df.label == c].sample(sizes[c], random_state=rng) for c in CLASS_ORDER]
-    s = pd.concat(parts).sample(frac=1, random_state=rng)
-    s = pd.DataFrame({"id": s["id"], "site_label": s["label"], "source": s["source"], "title": s["title"], "url": s["url"],
-                      "preview": s["text"].str.replace("\n", " ").str[:220], "my_label": "", "agree": "", "notes": ""})
-    s.to_csv("reports/label_spotcheck.csv", index=False, encoding="utf-8-sig")
-    return len(s)
-
-
 def main():
     FIG.mkdir(parents=True, exist_ok=True); TAB.mkdir(parents=True, exist_ok=True)
     style()
@@ -323,9 +312,8 @@ def main():
 
     # figures
     fig_class_balance(df); fig_length(df); fig_khmer_share(df)
-    n = spotcheck_sample(df)
     lines += ["## Files written\n", "- reports/figures: fig_class_balance, fig_length, fig_khmer_share, fig_year_heatmap, fig_source_predictability",
-              "- reports/eda/*.csv: every table above", f"- reports/label_spotcheck.csv: {n} random articles for the manual label check (seed {SEED})\n"]
+              "- reports/eda/*.csv: every table above\n"]
     Path("reports/eda_summary.md").write_text("\n".join(lines), encoding="utf-8")
     print(f"EDA done: {len(df):,} articles. See reports/eda_summary.md, reports/figures/, reports/eda/")
 

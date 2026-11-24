@@ -15,7 +15,9 @@ from pathlib import Path
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from src.preprocess import ZERO_WIDTH, URL_RE, KHMER_RE
+URL_RE = re.compile(r"https?://\S+|www\.\S+")
+ZERO_WIDTH = dict.fromkeys((0x200B, 0x200C, 0x200D, 0xFEFF), None)  # zero-width space, joiners, BOM (code points for str.translate)
+KHMER_RE = re.compile("[" + chr(0x1780) + "-" + chr(0x17FF) + "]")  # Khmer Unicode block U+1780-U+17FF
 
 RAW = [Path("data/raw/dap_articles.csv"), Path("data/raw/cen_articles.csv"), Path("data/raw/kt_articles.csv")]
 OUT_DIR = Path("data/processed")

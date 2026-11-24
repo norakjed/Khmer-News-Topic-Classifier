@@ -1,19 +1,18 @@
-# Class Guide (draft, based on docs/source_survey.md)
+# Class Guide
 
-Labels come from each news site's section. Section URLs below are relative to each site.
+Each article's label comes from the news site's own section. The table maps the sections we used to the six classes (URLs are relative to each site).
 
-| Final class | DAP News | CEN | Kampuchea Thmey | BTV |
-|---|---|---|---|---|
-| Politics | /category/politic/ | /category/national/politics | - | /category/development |
-| Economy/Business | /category/economic/ | /category/national/business-2 | - | /category/economic |
-| Sports | /category/sport/ | - | /category/sports | - |
-| Entertainment | /category/entertianment/ | /category/entertainment | - | - |
-| Technology | /category/technology/ | /category/science-and-technology | - | - |
-| Society/Health | /category/health/ | /category/heal-beauty | - | /category/security |
+| Class | DAP News | CEN | Kampuchea Thmey |
+|---|---|---|---|
+| politics | /category/politic/ | /category/national/politics | - |
+| economy | /category/economic/ | /category/national/business-2 | - |
+| technology | /category/technology/ | /category/science-and-technology | - |
+| sports | /category/sport/ | - | /category/sports |
+| society_health | /category/health/ | /category/heal-beauty | - |
+| entertainment | /category/entertianment/ | /category/entertainment | - |
 
-Sections deliberately NOT used: national/international (mixed topics), advertising/promote content, flood, covid19, specialedition, scholar, weird, hong-suy (fortune telling), CEN national/social (shares the society_health label with heal-beauty).
+Not used: mixed-topic sections (national, international), advertising sections, special-topic sections (flood, covid19, special edition, scholar, weird, fortune telling) and CEN `national/social` (it would share the society_health label with heal-beauty).
 
-Rules:
-- Drop a class if it has fewer than ~300 articles; each class from at least 2 sites.
-- Society/Health merges different site sections; spot-check about 100 articles and split or drop it if inconsistent.
-- Dedupe by URL and by normalised title (sites may repost the same story).
+Notes:
+- An article listed under two sections keeps only the first label it was collected under.
+- `society_health` merges several site sections (health, lifestyle, society), so it is the least uniform class.

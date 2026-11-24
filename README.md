@@ -6,17 +6,19 @@ Full description: `docs/Project_Description.pdf`
 
 ## Structure
 ```
-data/raw/        Scraped articles (local only, git-ignored)
-data/processed/  Cleaned dataset.csv
-data/splits/     Fixed train/val/test splits (seeded, stratified)
-notebooks/       EDA and experiments
-src/             scraper.py, preprocess.py, features, models, evaluation
-docs/            Project description, data card, class guide
-reports/         Figures and final report
+data/raw/        Scraped pages and CSVs (local only, git-ignored)
+data/processed/  dataset.csv (cleaned articles), cleaning_report.md, removed.csv
+data/splits/     splits.csv (fixed train/val/test + CV folds), split_report.md
+docs/            Project description, data card, class guide, source survey
+notebooks/       01_eda.ipynb (add the model notebooks here)
+reports/         EDA figures and tables
+src/scrapers/    dap.py, cen.py, kt.py (one per website) and common.py (shared helpers)
+src/             clean.py, split.py, data.py (loader), eda.py
 ```
+New model code goes in new files under `src/` (for example `features.py`, `classical.py`, `ann.py`, `evaluate.py`), one file per person to avoid merge conflicts.
 
 ## Roles
-- **Chhorn Norakjed (Data):** sources, scrapers, cleaning, EDA, label check, split, 
+- **Chhorn Norakjed (Data):** sources, scrapers, cleaning, EDA, split, data card
 - **Hak Kimly (Classical models):** TF-IDF, logistic regression, SVM, cross-validation
 - **Seoum Reaseychanbopich (ANN and evaluation):** ANN, metrics, learning curves, error analysis, demo
 
@@ -38,7 +40,16 @@ for fold_train, fold_val in load_cv_folds():   # 5 cross-validation folds inside
 - The split is stratified by **class and source**, seed 42, and is stored in `data/splits/splits.csv` (`id, split, fold`). Counts per split are in `data/splits/split_report.md`.
 - Do **not** re-split. If the dataset ever changes, tell the team first.
 - Suggested text cap for models: `MAX_CHARS = 5000` in `src/data.py` (median article is about 1,700 characters, the longest 21,338).
-- Reproduce the pipeline: `python -m src.clean` (raw to dataset), `python -m src.split` (split), `python -m src.eda` (EDA figures and tables).
+- Reproduce the pipeline:
+  ```
+  python -m src.scrapers.dap --per-section 400      # collect (raw pages stay local, about an hour per site)
+  python -m src.scrapers.cen --per-section 300
+  python -m src.scrapers.kt --per-section 300
+  python -m src.clean                                # raw CSVs to data/processed/dataset.csv
+  python -m src.split                                # fixed split (do not re-run after the team started)
+  python -m src.eda                                  # EDA figures and tables
+  ```
+  Websites change, so re-scraping gives different articles: use the committed `dataset.csv` and `splits.csv` as the reference.
 
 ## Setup (Windows)
 ```

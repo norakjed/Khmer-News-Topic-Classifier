@@ -4,8 +4,8 @@ Collects Khmer news articles from public category pages of dap-news.com.
 The label comes from the site's own category (see docs/class_guide.md).
 
 Usage (from the project root):
-    python -m src.scraper --per-section 20            # small test run
-    python -m src.scraper --per-section 400           # full run (resumable)
+    python -m src.scrapers.dap --per-section 20            # small test run
+    python -m src.scrapers.dap --per-section 400           # full run (resumable)
 
 Polite by design: robots.txt is checked, one request at a time, fixed delay,
 raw HTML cached in data/raw/ so nothing is requested twice.

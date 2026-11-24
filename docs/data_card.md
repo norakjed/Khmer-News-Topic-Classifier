@@ -34,7 +34,7 @@ Every class has two sources. Fixed split (seed 42, stratified by class and sourc
 
 ## 3. How the data was collected
 
-- **Method:** custom Python scrapers (`src/scraper_dap.py`, `src/scraper_cen.py`, `src/scraper_kt.py`) reading public category listing pages and article pages. No login, no private content.
+- **Method:** custom Python scrapers (`src/scrapers/dap.py`, `src/scrapers/cen.py`, `src/scrapers/kt.py`) reading public category listing pages and article pages. No login, no private content.
 - **Politeness:** `robots.txt` checked before every request; one request at a time; at least 2 seconds between requests; the site's own `Crawl-delay` is obeyed (10 seconds for Kampuchea Thmey). Downloaded pages are cached locally, so nothing is requested twice.
 - **Sources chosen** after a `robots.txt` survey (`docs/source_survey.md`). Sites were **excluded** when they forbade AI training in `robots.txt` (Post Khmer, Thmey Thmey, Cambodianess), blocked crawlers (Fresh News, AKP), had no usable archive pagination (Koh Santepheap Daily) or had no topic structure (VOA Khmer).
 - **Fields kept:** title, article text, URL, publication date. Author names are not stored.
@@ -86,9 +86,9 @@ Text changes applied to every kept article: Unicode NFC normalisation; zero-widt
 ## 9. Reproducing and updating
 
 ```
-python -m src.scraper --per-section 400                  # DAP News
-python -m src.scraper_cen --per-section 300              # CEN
-python -m src.scraper_kt --per-section 300               # Kampuchea Thmey (about an hour, 10 s delay)
+python -m src.scrapers.dap --per-section 400             # DAP News
+python -m src.scrapers.cen --per-section 300             # CEN
+python -m src.scrapers.kt --per-section 300              # Kampuchea Thmey (about an hour, 10 s delay)
 python -m src.clean                                      # raw to data/processed/dataset.csv
 python -m src.split                                      # fixed split (seed 42)
 python -m src.eda                                        # figures and tables
@@ -97,4 +97,4 @@ Raw scraped files are kept locally in `data/raw/` and are not part of the reposi
 
 ## 10. Related files
 
-`docs/source_survey.md` (source survey), `docs/class_guide.md` (section to class mapping), `data/processed/cleaning_report.md`, `data/splits/split_report.md`, `reports/eda_summary.md`, `reports/label_spotcheck.csv`.
+`docs/source_survey.md` (source survey), `docs/class_guide.md` (section to class mapping), `data/processed/cleaning_report.md`, `data/splits/split_report.md`, `reports/eda_summary.md`.
