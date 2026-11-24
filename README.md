@@ -16,7 +16,7 @@ reports/         Figures and final report
 ```
 
 ## Roles
-- **Chhorn Norakjed (Data):** sources, scraper, cleaning, EDA, preprocessing, split, segmentation test
+- **Chhorn Norakjed (Data):** sources, scrapers, cleaning, EDA, label check, split, 
 - **Hak Kimly (Classical models):** TF-IDF, logistic regression, SVM, cross-validation
 - **Seoum Reaseychanbopich (ANN and evaluation):** ANN, metrics, learning curves, error analysis, demo
 
