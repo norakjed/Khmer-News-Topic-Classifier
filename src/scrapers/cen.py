@@ -3,9 +3,9 @@
 The label comes from the site's own category (see docs/class_guide.md).
 
 Usage (from the project root):
-    python -m src.scraper_cen --per-section 20                  # small test
-    python -m src.scraper_cen --per-section 300                 # full run (resumable)
-    python -m src.scraper_cen --per-section 300 --sections entertainment heal-beauty
+    python -m src.scrapers.cen --per-section 20                  # small test
+    python -m src.scrapers.cen --per-section 300                 # full run (resumable)
+    python -m src.scrapers.cen --per-section 300 --sections entertainment heal-beauty
 """
 import argparse
 import csv
@@ -14,7 +14,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from src.common import FIELDS, Fetcher, load_done, log
+from src.scrapers.common import FIELDS, Fetcher, load_done, log
 
 BASE = "https://cen.com.kh"
 RAW_DIR = Path("data/raw/cen")

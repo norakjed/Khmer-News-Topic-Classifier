@@ -1,0 +1,7 @@
+﻿label,median_khmer_share,articles_below_0_80,median_latin_share
+politics,0.94,0,0.0
+economy,0.93,6,0.013
+technology,0.917,29,0.032
+sports,0.884,56,0.051
+society_health,0.946,3,0.0
+entertainment,0.93,8,0.012

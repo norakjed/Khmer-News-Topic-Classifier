@@ -5,8 +5,8 @@ Used as a second source for the `sports` class. The site's robots.txt asks for a
 (so about 6 requests per minute: 300 articles take roughly an hour).
 
 Usage (from the project root):
-    python -m src.scraper_kt --per-section 20      # small test
-    python -m src.scraper_kt --per-section 300     # full run (resumable)
+    python -m src.scrapers.kt --per-section 20      # small test
+    python -m src.scrapers.kt --per-section 300     # full run (resumable)
 """
 import argparse
 import csv
@@ -15,7 +15,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from src.common import FIELDS, Fetcher, load_done, log
+from src.scrapers.common import FIELDS, Fetcher, load_done, log
 
 BASE = "https://www.kampucheathmey.com"
 RAW_DIR = Path("data/raw/kt")
