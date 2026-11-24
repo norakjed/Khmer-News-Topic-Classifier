@@ -28,7 +28,20 @@ class Fetcher:
     def __init__(self, base: str, cache_dir: Path, delay: float = 2.0):
         self.base, self.cache_dir, self.delay = base.rstrip("/"), Path(cache_dir), delay
         self.robots = robotparser.RobotFileParser(f"{self.base}/robots.txt")
-        self.robots.read()
+        # fetch robots.txt ourselves with our User-Agent: urllib's default one is 403-blocked by some
+        # sites, and RobotFileParser.read() then treats the 403 as "disallow everything"
+        r = requests.get(f"{self.base}/robots.txt", headers=HEADERS, timeout=25)
+        if r.status_code == 200:
+            self.robots.parse(r.text.splitlines())
+        elif r.status_code in (404, 410):
+            self.robots.parse([])  # no robots.txt: nothing is disallowed
+        else:
+            raise RuntimeError(f"cannot read robots.txt of {self.base} (HTTP {r.status_code})")
+        # obey the site's own Crawl-delay if it is longer than ours
+        site_delay = self.robots.crawl_delay(HEADERS["User-Agent"])
+        if site_delay:
+            self.delay = max(self.delay, float(site_delay))
+            log(f"robots.txt Crawl-delay {site_delay}s -> using {self.delay}s between requests")
         self.session = requests.Session()
         self.session.headers.update(HEADERS)
         self._last = 0.0
