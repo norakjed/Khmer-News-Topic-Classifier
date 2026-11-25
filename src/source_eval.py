@@ -1,4 +1,4 @@
-"""Per-source metrics and DAP -> CEN cross-source test (member 2).
+"""Per-source metrics and DAP -> CEN cross-source test .
 Uses train and val only. The test set is NOT touched."""
 import pandas as pd
 from sklearn.metrics import classification_report, f1_score

@@ -1,4 +1,4 @@
-"""Tune C and n-gram range with 5-fold CV on the training set (member 2)."""
+"""Tune C and n-gram range with 5-fold CV on the training set"""
 from src.classical import cv_macro_f1
 
 results = []

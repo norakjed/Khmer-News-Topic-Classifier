@@ -1,5 +1,5 @@
 
-"""Classical models: TF-IDF character n-grams + Logistic Regression / SVM (member 2)."""
+"""Classical models: TF-IDF character n-grams + Logistic Regression / SVM."""
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
