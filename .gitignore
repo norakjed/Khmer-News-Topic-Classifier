@@ -7,3 +7,5 @@ venv/
 # raw scraped HTML/articles: keep local, do not republish
 data/raw/*
 !data/raw/.gitkeep
+# trained models: recreate with `python -m src.save_classical`
+models/

@@ -32,6 +32,14 @@ rows = [
 table = pd.DataFrame(rows, columns=["model", "ngram", "C", "cv_macro_f1"])
 table.to_csv("reports/classical_cv_results.csv", index=False)
 
-print("Saved model and results.")
-print("Validation accuracy:", round(accuracy_score(val["label"], pred), 3))
-print("Validation macro-F1:", round(f1_score(val["label"], pred, average="macro"), 3))
+# Logistic regression, n-gram (2, 4), C=10
+logreg = make_pipeline("logreg", 10.0, (2, 4))
+logreg.fit(make_text(train), train["label"])
+logreg_pred = logreg.predict(make_text(val))
+
+joblib.dump(logreg, "models/classical_logreg.joblib")
+
+print("Saved models and results.")
+for name, p in [("SVM", pred), ("Logistic regression", logreg_pred)]:
+    print(f"{name} validation accuracy:", round(accuracy_score(val["label"], p), 3))
+    print(f"{name} validation macro-F1:", round(f1_score(val["label"], p, average="macro"), 3))

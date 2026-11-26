@@ -57,6 +57,14 @@ for fold_train, fold_val in load_cv_folds():   # 5 cross-validation folds inside
 
 `MAX_CHARS = 5000` in `src/data.py` is a suggested cap for the text length (the median article has about 1,700 characters; the longest has 21,338).
 
+## Classical models
+
+Trained model files are not part of the repository. Create them from the repository root:
+
+```
+python -m src.save_classical
+```
+
 ## Recommended evaluation protocol
 
 If you use this data, these practices keep results honest:
@@ -96,6 +104,8 @@ notebooks/       01_eda.ipynb
 reports/         EDA summary, tables and figures
 src/scrapers/    one scraper per website (dap.py, cen.py, kt.py) and shared helpers
 src/             clean.py, split.py, data.py (loader), eda.py
+src/             classical.py, tune_classical.py, tune_rbf.py, save_classical.py, source_eval.py (classical models)
+models/          trained model files, created locally and not committed
 ```
 
 Raw downloaded pages are kept locally in `data/raw/` and are not part of the repository.
