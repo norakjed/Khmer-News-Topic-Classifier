@@ -25,7 +25,7 @@ out = pd.DataFrame({"id": val["id"], "label": val["label"], "pred": pred})
 out.to_csv("reports/classical_val_predictions.csv", index=False)
 
 rows = [
-    ["logreg", "(2, 4)", 10.0, 0.8963],
+    ["logreg", "(2, 4)", 50.0, 0.8998],
     ["linear svm", "(2, 4)", 10.0, 0.9030],
     ["rbf svm", "(2, 4)", 10.0, 0.8895],
 ]
