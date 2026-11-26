@@ -1,0 +1,6 @@
+evaluation,rows,classes_present,accuracy,macro_f1
+val: all sources,471,6,0.9023,0.9013
+val: cen,197,5,0.9086,0.9112
+val: dap-news,250,6,0.888,0.8611
+val: kampucheathmey,24,1,1.0,
+"cross-source: train dap-news, test cen",1121,5,0.6985,0.6888
