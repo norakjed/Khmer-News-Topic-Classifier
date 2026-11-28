@@ -1,4 +1,3 @@
 model,ngram,C,cv_macro_f1
 logreg,"(2, 4)",50.0,0.8998
 linear svm,"(2, 4)",10.0,0.903
-rbf svm,"(2, 4)",10.0,0.8895
