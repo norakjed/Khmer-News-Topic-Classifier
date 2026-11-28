@@ -27,13 +27,13 @@ out.to_csv("reports/classical_val_predictions.csv", index=False)
 rows = [
     ["logreg", "(2, 4)", 50.0, 0.8998],
     ["linear svm", "(2, 4)", 10.0, 0.9030],
-    ["rbf svm", "(2, 4)", 10.0, 0.8895],
+
 ]
 table = pd.DataFrame(rows, columns=["model", "ngram", "C", "cv_macro_f1"])
 table.to_csv("reports/classical_cv_results.csv", index=False)
 
-# Logistic regression, n-gram (2, 4), C=10
-logreg = make_pipeline("logreg", 10.0, (2, 4))
+# Logistic regression, n-gram (2, 4), C=50
+logreg = make_pipeline("logreg", 50.0, (2, 4))
 logreg.fit(make_text(train), train["label"])
 logreg_pred = logreg.predict(make_text(val))
 
